@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTratamientosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTratamientosEmpty}" rendered="#{tratamientosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tratamientosController.items.rowCount > 0}">
+                    <h:outputText value="#{tratamientosController.pagination.pageFirstItem + 1}..#{tratamientosController.pagination.pageLastItem + 1}/#{tratamientosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tratamientosController.previous}" value="#{bundle.Previous} #{tratamientosController.pagination.pageSize}" rendered="#{tratamientosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tratamientosController.next}" value="#{bundle.Next} #{tratamientosController.pagination.pageSize}" rendered="#{tratamientosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tratamientosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTratamientosTitle_traNumero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.traNumero}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTratamientosTitle_traFechaAsignado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.traFechaAsignado}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTratamientosTitle_traDescripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.traDescripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTratamientosTitle_traFechaInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.traFechaInicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTratamientosTitle_traFechaFin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.traFechaFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTratamientosTitle_traObservaciones}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.traObservaciones}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTratamientosTitle_traPaciente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.traPaciente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tratamientosController.prepareView}" value="#{bundle.ListTratamientosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tratamientosController.prepareEdit}" value="#{bundle.ListTratamientosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tratamientosController.destroy}" value="#{bundle.ListTratamientosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tratamientosController.prepareCreate}" value="#{bundle.ListTratamientosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTratamientosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

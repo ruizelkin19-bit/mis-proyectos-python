@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewConsultoriosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewConsultoriosLabel_conNumero}"/>
+                    <h:outputText value="#{consultoriosController.selected.conNumero}" title="#{bundle.ViewConsultoriosTitle_conNumero}"/>
+                    <h:outputText value="#{bundle.ViewConsultoriosLabel_conNombre}"/>
+                    <h:outputText value="#{consultoriosController.selected.conNombre}" title="#{bundle.ViewConsultoriosTitle_conNombre}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{consultoriosController.destroyAndView}" value="#{bundle.ViewConsultoriosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewConsultoriosEditLink}"/>
+                <br />
+                <h:commandLink action="#{consultoriosController.prepareCreate}" value="#{bundle.ViewConsultoriosCreateLink}" />
+                <br />
+                <h:commandLink action="#{consultoriosController.prepareList}" value="#{bundle.ViewConsultoriosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewConsultoriosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

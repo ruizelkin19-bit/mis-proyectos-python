@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCitasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCitasLabel_citNumero}" for="citNumero" />
+                    <h:inputText id="citNumero" value="#{citasController.selected.citNumero}" title="#{bundle.EditCitasTitle_citNumero}" required="true" requiredMessage="#{bundle.EditCitasRequiredMessage_citNumero}"/>
+                    <h:outputLabel value="#{bundle.EditCitasLabel_citFecha}" for="citFecha" />
+                    <h:inputText id="citFecha" value="#{citasController.selected.citFecha}" title="#{bundle.EditCitasTitle_citFecha}" required="true" requiredMessage="#{bundle.EditCitasRequiredMessage_citFecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditCitasLabel_citHora}" for="citHora" />
+                    <h:inputText id="citHora" value="#{citasController.selected.citHora}" title="#{bundle.EditCitasTitle_citHora}" required="true" requiredMessage="#{bundle.EditCitasRequiredMessage_citHora}"/>
+                    <h:outputLabel value="#{bundle.EditCitasLabel_citEstado}" for="citEstado" />
+                    <h:inputText id="citEstado" value="#{citasController.selected.citEstado}" title="#{bundle.EditCitasTitle_citEstado}" required="true" requiredMessage="#{bundle.EditCitasRequiredMessage_citEstado}"/>
+                    <h:outputLabel value="#{bundle.EditCitasLabel_citPaciente}" for="citPaciente" />
+                    <h:selectOneMenu id="citPaciente" value="#{citasController.selected.citPaciente}" title="#{bundle.EditCitasTitle_citPaciente}" required="true" requiredMessage="#{bundle.EditCitasRequiredMessage_citPaciente}">
+                        <f:selectItems value="#{pacientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditCitasLabel_citMedico}" for="citMedico" />
+                    <h:selectOneMenu id="citMedico" value="#{citasController.selected.citMedico}" title="#{bundle.EditCitasTitle_citMedico}" required="true" requiredMessage="#{bundle.EditCitasRequiredMessage_citMedico}">
+                        <f:selectItems value="#{medicosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditCitasLabel_citConsultorio}" for="citConsultorio" />
+                    <h:selectOneMenu id="citConsultorio" value="#{citasController.selected.citConsultorio}" title="#{bundle.EditCitasTitle_citConsultorio}" required="true" requiredMessage="#{bundle.EditCitasRequiredMessage_citConsultorio}">
+                        <f:selectItems value="#{consultoriosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{citasController.update}" value="#{bundle.EditCitasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCitasViewLink}"/>
+                <br />
+                <h:commandLink action="#{citasController.prepareList}" value="#{bundle.EditCitasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCitasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

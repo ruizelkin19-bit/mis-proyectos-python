@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePacientesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePacientesLabel_pacIdentificacion}" for="pacIdentificacion" />
+                    <h:inputText id="pacIdentificacion" value="#{pacientesController.selected.pacIdentificacion}" title="#{bundle.CreatePacientesTitle_pacIdentificacion}" required="true" requiredMessage="#{bundle.CreatePacientesRequiredMessage_pacIdentificacion}"/>
+                    <h:outputLabel value="#{bundle.CreatePacientesLabel_pacNombres}" for="pacNombres" />
+                    <h:inputText id="pacNombres" value="#{pacientesController.selected.pacNombres}" title="#{bundle.CreatePacientesTitle_pacNombres}" required="true" requiredMessage="#{bundle.CreatePacientesRequiredMessage_pacNombres}"/>
+                    <h:outputLabel value="#{bundle.CreatePacientesLabel_pacApellidos}" for="pacApellidos" />
+                    <h:inputText id="pacApellidos" value="#{pacientesController.selected.pacApellidos}" title="#{bundle.CreatePacientesTitle_pacApellidos}" />
+                    <h:outputLabel value="#{bundle.CreatePacientesLabel_pacFechaNacimiento}" for="pacFechaNacimiento" />
+                    <h:inputText id="pacFechaNacimiento" value="#{pacientesController.selected.pacFechaNacimiento}" title="#{bundle.CreatePacientesTitle_pacFechaNacimiento}" required="true" requiredMessage="#{bundle.CreatePacientesRequiredMessage_pacFechaNacimiento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePacientesLabel_pacSexo}" for="pacSexo" />
+                    <h:inputText id="pacSexo" value="#{pacientesController.selected.pacSexo}" title="#{bundle.CreatePacientesTitle_pacSexo}" required="true" requiredMessage="#{bundle.CreatePacientesRequiredMessage_pacSexo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pacientesController.create}" value="#{bundle.CreatePacientesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{pacientesController.prepareList}" value="#{bundle.CreatePacientesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePacientesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

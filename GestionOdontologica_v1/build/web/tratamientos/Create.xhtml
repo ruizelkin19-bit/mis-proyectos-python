@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTratamientosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTratamientosLabel_traNumero}" for="traNumero" />
+                    <h:inputText id="traNumero" value="#{tratamientosController.selected.traNumero}" title="#{bundle.CreateTratamientosTitle_traNumero}" required="true" requiredMessage="#{bundle.CreateTratamientosRequiredMessage_traNumero}"/>
+                    <h:outputLabel value="#{bundle.CreateTratamientosLabel_traFechaAsignado}" for="traFechaAsignado" />
+                    <h:inputText id="traFechaAsignado" value="#{tratamientosController.selected.traFechaAsignado}" title="#{bundle.CreateTratamientosTitle_traFechaAsignado}" required="true" requiredMessage="#{bundle.CreateTratamientosRequiredMessage_traFechaAsignado}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTratamientosLabel_traDescripcion}" for="traDescripcion" />
+                    <h:inputTextarea rows="4" cols="30" id="traDescripcion" value="#{tratamientosController.selected.traDescripcion}" title="#{bundle.CreateTratamientosTitle_traDescripcion}" required="true" requiredMessage="#{bundle.CreateTratamientosRequiredMessage_traDescripcion}"/>
+                    <h:outputLabel value="#{bundle.CreateTratamientosLabel_traFechaInicio}" for="traFechaInicio" />
+                    <h:inputText id="traFechaInicio" value="#{tratamientosController.selected.traFechaInicio}" title="#{bundle.CreateTratamientosTitle_traFechaInicio}" required="true" requiredMessage="#{bundle.CreateTratamientosRequiredMessage_traFechaInicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTratamientosLabel_traFechaFin}" for="traFechaFin" />
+                    <h:inputText id="traFechaFin" value="#{tratamientosController.selected.traFechaFin}" title="#{bundle.CreateTratamientosTitle_traFechaFin}" required="true" requiredMessage="#{bundle.CreateTratamientosRequiredMessage_traFechaFin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTratamientosLabel_traObservaciones}" for="traObservaciones" />
+                    <h:inputTextarea rows="4" cols="30" id="traObservaciones" value="#{tratamientosController.selected.traObservaciones}" title="#{bundle.CreateTratamientosTitle_traObservaciones}" required="true" requiredMessage="#{bundle.CreateTratamientosRequiredMessage_traObservaciones}"/>
+                    <h:outputLabel value="#{bundle.CreateTratamientosLabel_traPaciente}" for="traPaciente" />
+                    <h:selectOneMenu id="traPaciente" value="#{tratamientosController.selected.traPaciente}" title="#{bundle.CreateTratamientosTitle_traPaciente}" required="true" requiredMessage="#{bundle.CreateTratamientosRequiredMessage_traPaciente}">
+                        <f:selectItems value="#{pacientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tratamientosController.create}" value="#{bundle.CreateTratamientosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tratamientosController.prepareList}" value="#{bundle.CreateTratamientosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTratamientosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
